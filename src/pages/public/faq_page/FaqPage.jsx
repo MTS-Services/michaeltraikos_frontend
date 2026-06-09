@@ -559,6 +559,7 @@ function FaqItem({ faq, isOpen, onToggle }) {
 export default function FaqPage() {
   useDocumentTitle("Frequently Asked Questions - Traikos Finance");
   const [openIds, setOpenIds] = useState([]);
+  const allFaqs = [...FAQ_DATA, ...ADDITIONAL_FAQ_DATA];
 
   const toggleFaq = (id) => {
     setOpenIds(prev => 
@@ -569,12 +570,9 @@ export default function FaqPage() {
   };
 
   // Split FAQs into two columns for desktop
-  const midpoint = Math.ceil(FAQ_DATA.length / 2);
-  const leftColumnFaqs = FAQ_DATA.slice(0, midpoint);
-  const rightColumnFaqs = FAQ_DATA.slice(midpoint);
-  const additionalMidpoint = Math.ceil(ADDITIONAL_FAQ_DATA.length / 2);
-  const additionalLeftColumnFaqs = ADDITIONAL_FAQ_DATA.slice(0, additionalMidpoint);
-  const additionalRightColumnFaqs = ADDITIONAL_FAQ_DATA.slice(additionalMidpoint);
+  const midpoint = Math.ceil(allFaqs.length / 2);
+  const leftColumnFaqs = allFaqs.slice(0, midpoint);
+  const rightColumnFaqs = allFaqs.slice(midpoint);
 
   return (
     <>
@@ -595,7 +593,7 @@ export default function FaqPage() {
           {/* Mobile Layout - Single Column */}
           <div className="md:hidden">
             <div className="bg-white">
-              {FAQ_DATA.map((faq) => (
+              {allFaqs.map((faq) => (
                 <FaqItem
                   key={faq.id}
                   faq={faq}
@@ -623,53 +621,6 @@ export default function FaqPage() {
             {/* Right Column */}
             <div className="bg-white">
               {rightColumnFaqs.map((faq) => (
-                <FaqItem
-                  key={faq.id}
-                  faq={faq}
-                  isOpen={openIds.includes(faq.id)}
-                  onToggle={() => toggleFaq(faq.id)}
-                />
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <section className="bg-white pb-16!">
-        <div className="w-[90%] md:w-[85%] lg:w-[80%] max-w-7xl mx-auto">
-
-          <h2 className="text-2xl md:text-4xl! font-bold text-center mb-8! md:mb-8! uppercase text-gray-900!">
-            Answers to Your Top <br /> Mortgage Questions
-          </h2>
-
-          <div className="md:hidden">
-            <div className="bg-white">
-              {ADDITIONAL_FAQ_DATA.map((faq) => (
-                <FaqItem
-                  key={faq.id}
-                  faq={faq}
-                  isOpen={openIds.includes(faq.id)}
-                  onToggle={() => toggleFaq(faq.id)}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="hidden md:grid md:grid-cols-2 md:gap-8 lg:gap-12">
-            <div className="bg-white">
-              {additionalLeftColumnFaqs.map((faq) => (
-                <FaqItem
-                  key={faq.id}
-                  faq={faq}
-                  isOpen={openIds.includes(faq.id)}
-                  onToggle={() => toggleFaq(faq.id)}
-                />
-              ))}
-            </div>
-
-            <div className="bg-white">
-              {additionalRightColumnFaqs.map((faq) => (
                 <FaqItem
                   key={faq.id}
                   faq={faq}
