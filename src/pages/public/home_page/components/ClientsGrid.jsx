@@ -8,17 +8,17 @@ import nesteaImg from "@/assets/grid_image/refinancing.png";
 import espnImg from "@/assets/grid_image/nexthome.png";
 import lafcImg from "@/assets/grid_image/loans.png";
 import foxImg from "@/assets/grid_image/construction.png";
-
+ 
 // Route map: card id → path
 const CARD_ROUTES = {
-  0: '/first-home',
-  1: '/next-home',
-  2: '/investment',
-  3: '/construction',
-  4: '/smsf',
-  5: '/refinancing',
+  0: "/first-home-buyer-loan",
+  1: "/next-home-buyer-loans",
+  2: "/investment",
+  3: "/construction-renovation-loans",
+  4: "/smsf",
+  5: "/refinancing",
 };
-
+ 
 const CLIENTS = [
   {
     id: 0,
@@ -87,31 +87,31 @@ const CLIENTS = [
     },
   },
 ];
-
+ 
 function ClientCard({ client, index, onEnter, onLeave, isActive, onToggle, onTouchPreview }) {
   const textRef = useRef(null);
   const imgRef = useRef(null);
   const loopRef = useRef(null);
   const articleRef = useRef(null);
   const wasActiveRef = useRef(isActive);
-
+ 
   useEffect(
     () => () => {
       if (loopRef.current) loopRef.current.kill();
     },
     [],
   );
-
+ 
   const startLoop = useCallback(() => {
     if (loopRef.current) {
       loopRef.current.kill();
       loopRef.current = null;
     }
     if (!textRef.current || !imgRef.current) return;
-
+ 
     const chars = Array.from(textRef.current.querySelectorAll(".char"));
     const tl = gsap.timeline();
-
+ 
     tl.to(chars, {
       x: "-12px",
       opacity: 0,
@@ -135,20 +135,20 @@ function ClientCard({ client, index, onEnter, onLeave, isActive, onToggle, onTou
           ease: "power2.out",
         },
       );
-
+ 
     loopRef.current = tl;
   }, []);
-
+ 
   const stopLoop = useCallback(() => {
     if (loopRef.current) {
       loopRef.current.kill();
       loopRef.current = null;
     }
     if (!textRef.current || !imgRef.current) return;
-
+ 
     const chars = Array.from(textRef.current.querySelectorAll(".char"));
     gsap.killTweensOf([...chars, imgRef.current]);
-
+ 
     gsap.to(imgRef.current, { opacity: 0, duration: 0.25, ease: "power1.in" });
     gsap.to(chars, {
       opacity: 1,
@@ -157,15 +157,15 @@ function ClientCard({ client, index, onEnter, onLeave, isActive, onToggle, onTou
       stagger: { each: 0.03, from: "start" },
     });
   }, []);
-
+ 
   useEffect(() => {
     if (wasActiveRef.current === isActive) return;
     wasActiveRef.current = isActive;
-
+ 
     if (isActive) startLoop();
     else stopLoop();
   }, [isActive, startLoop, stopLoop]);
-
+ 
   const handleEnter = useCallback(
     (e) => {
       if (e.pointerType !== "mouse") return;
@@ -175,7 +175,7 @@ function ClientCard({ client, index, onEnter, onLeave, isActive, onToggle, onTou
     },
     [isActive, startLoop, onEnter, client.pageColor],
   );
-
+ 
   const handleLeave = useCallback(
     (e) => {
       if (e.pointerType !== "mouse") return;
@@ -185,17 +185,17 @@ function ClientCard({ client, index, onEnter, onLeave, isActive, onToggle, onTou
     },
     [isActive, stopLoop, onLeave],
   );
-
+ 
   const handleClick = useCallback(() => {
     onToggle(client.id, client.pageColor);
   }, [onToggle, client.id, client.pageColor]);
-
+ 
   const handleTouchStart = useCallback(() => {
     onTouchPreview(client.id, client.pageColor, articleRef.current);
   }, [onTouchPreview, client.id, client.pageColor]);
-
+ 
   const hasRoute = CARD_ROUTES[client.id] != null;
-
+ 
   return (
     <article
       ref={articleRef}
@@ -213,7 +213,7 @@ function ClientCard({ client, index, onEnter, onLeave, isActive, onToggle, onTou
         style={client.imgStyle}
         aria-hidden="true"
       />
-
+ 
       <div
         ref={textRef}
         className="absolute inset-0 flex flex-col items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 md:px-10"
@@ -241,18 +241,18 @@ function ClientCard({ client, index, onEnter, onLeave, isActive, onToggle, onTou
     </article>
   );
 }
-
+ 
 export default function ClientsGrid() {
   const [activeCardId, setActiveCardId] = useState(null);
   const navigate = useNavigate();
   const touchPreviewRef = useRef(null);
   const touchPreviewTimeoutRef = useRef(null);
-
+ 
   const isTouchPreviewViewport = useCallback(
     () => typeof window !== 'undefined' && window.matchMedia('(hover: none) and (pointer: coarse)').matches,
     [],
   );
-
+ 
   const handleEnter = useCallback((color) => {
     gsap.to(document.getElementById("page-overlay"), {
       backgroundColor: color,
@@ -260,7 +260,7 @@ export default function ClientsGrid() {
       ease: "power2.out",
     });
   }, []);
-
+ 
   const handleLeave = useCallback(() => {
     gsap.to(document.getElementById("page-overlay"), {
       backgroundColor: "rgba(0,0,0,0)",
@@ -268,35 +268,35 @@ export default function ClientsGrid() {
       ease: "power2.out",
     });
   }, []);
-
+ 
   const clearTouchPreview = useCallback(() => {
     if (touchPreviewTimeoutRef.current) {
       window.clearTimeout(touchPreviewTimeoutRef.current);
       touchPreviewTimeoutRef.current = null;
     }
-
+ 
     touchPreviewRef.current = null;
     setActiveCardId(null);
     handleLeave();
   }, [handleLeave]);
-
+ 
   const resetCardSelection = useCallback(() => {
     if (touchPreviewTimeoutRef.current) {
       window.clearTimeout(touchPreviewTimeoutRef.current);
       touchPreviewTimeoutRef.current = null;
     }
-
+ 
     touchPreviewRef.current = null;
     setActiveCardId(null);
     handleLeave();
   }, [handleLeave]);
-
+ 
   useEffect(
     () => () => {
       if (touchPreviewTimeoutRef.current) {
         window.clearTimeout(touchPreviewTimeoutRef.current);
       }
-
+ 
       // Ensure the global page overlay never leaks into other routes.
       const overlay = document.getElementById("page-overlay");
       if (overlay) {
@@ -306,42 +306,42 @@ export default function ClientsGrid() {
     },
     [],
   );
-
+ 
   const handleTouchPreview = useCallback(
     (id, color, element) => {
       if (!isTouchPreviewViewport()) return;
-
+ 
       if (touchPreviewRef.current === id) {
         // Keep the current preview visible until timeout or navigation.
         return;
       }
-
+ 
       if (touchPreviewTimeoutRef.current) {
         window.clearTimeout(touchPreviewTimeoutRef.current);
       }
-
+ 
       touchPreviewRef.current = id;
       setActiveCardId(id);
       handleEnter(color);
       touchPreviewTimeoutRef.current = window.setTimeout(() => {
         clearTouchPreview();
       }, 2000);
-
+ 
       if (!element) return;
-
+ 
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const rect = element.getBoundingClientRect();
       const topInset = 96;
       const bottomInset = 32;
       const isAboveViewport = rect.top < topInset;
       const isBelowViewport = rect.bottom > window.innerHeight - bottomInset;
-
+ 
       if (!isAboveViewport && !isBelowViewport) return;
-
+ 
       const nextScrollY = window.scrollY + (isAboveViewport
         ? rect.top - topInset
         : rect.bottom - window.innerHeight + bottomInset);
-
+ 
       window.scrollTo({
         top: Math.max(0, nextScrollY),
         behavior: prefersReducedMotion ? 'auto' : 'smooth',
@@ -349,7 +349,7 @@ export default function ClientsGrid() {
     },
     [clearTouchPreview, handleEnter, isTouchPreviewViewport],
   );
-
+ 
   const handleToggle = useCallback(
     (id, color) => {
       if (touchPreviewRef.current === id) {
@@ -359,11 +359,11 @@ export default function ClientsGrid() {
         }
         touchPreviewRef.current = null;
       }
-
+ 
       // If this card has a dedicated page, use a smooth slide transition
       if (CARD_ROUTES[id]) {
         const to = CARD_ROUTES[id];
-
+ 
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           if (lenisRef.current) {
             lenisRef.current.scrollTo(0, { immediate: true });
@@ -376,7 +376,7 @@ export default function ClientsGrid() {
           navigate(to);
           return;
         }
-
+ 
         const page = pageRef.current;
         if (!page) {
           if (lenisRef.current) {
@@ -390,12 +390,12 @@ export default function ClientsGrid() {
           navigate(to);
           return;
         }
-
+ 
         const vw = window.innerWidth;
         const scrollY = window.scrollY;
         const DURATION = 1.5;
         const EASE = 'power2.inOut';
-
+ 
         // Clone the current page as a "snapshot" so the old view stays visible
         const snapshot = page.cloneNode(true);
         Object.assign(snapshot.style, {
@@ -412,7 +412,7 @@ export default function ClientsGrid() {
         });
         // Offset so the currently-visible part of the page shows in snapshot
         snapshot.children[0] && (snapshot.children[0].style.marginTop = `-${scrollY}px`);
-
+ 
         // Dark dimmer on top of the snapshot
         const dimmer = document.createElement('div');
         Object.assign(dimmer.style, {
@@ -425,14 +425,14 @@ export default function ClientsGrid() {
         });
         snapshot.appendChild(dimmer);
         document.body.appendChild(snapshot);
-
+ 
         document.documentElement.style.overflowX = 'hidden';
         document.body.style.overflowX = 'hidden';
         document.documentElement.style.scrollBehavior = 'auto';
-
+ 
         // Push the real page wrapper off-screen to the right
         gsap.set(page, { x: vw });
-
+ 
         // Navigate and scroll to top (hidden under snapshot)
         if (lenisRef.current) {
           lenisRef.current.scrollTo(0, { immediate: true });
@@ -441,7 +441,7 @@ export default function ClientsGrid() {
         }
         resetCardSelection();
         navigate(to);
-
+ 
         // Slide old snapshot out to the left, new page in from the right
         gsap.to(snapshot, {
           x: -vw,
@@ -449,14 +449,14 @@ export default function ClientsGrid() {
           ease: EASE,
           onComplete: () => snapshot.remove(),
         });
-
+ 
         gsap.to(dimmer, {
           opacity: 1,
           duration: DURATION * 0.8,
           delay: DURATION * 0.2,
           ease: 'power1.in',
         });
-
+ 
         gsap.to(page, {
           x: 0,
           duration: DURATION,
@@ -469,22 +469,22 @@ export default function ClientsGrid() {
             lenisRef.current?.resize();
           },
         });
-
+ 
         return;
       }
-
+ 
       if (activeCardId === id) {
         setActiveCardId(null);
         handleLeave();
         return;
       }
-
+ 
       setActiveCardId(id);
       handleEnter(color);
     },
     [activeCardId, handleEnter, handleLeave, navigate],
   );
-
+ 
   return (
     <section
       aria-label="Client portfolio"

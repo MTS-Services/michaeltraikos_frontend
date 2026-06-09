@@ -6,7 +6,7 @@ import logoDark from "../assets/logo_dark_1.png";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
+  { to: "/about-us", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -88,22 +88,22 @@ export default function Navbar({ scrolled = false }) {
           {/* Desktop nav links removed */}
 
           {/* Contextual right-corner link: show next page (About on Home, Contact on About) */}
-          {pathname === '/' && (
+          {pathname === "/" && (
             <TransitionLink
-              to="/about"
+              to="/about-us"
               className={`flex items-center gap-2 text-[12px] tracking-widest uppercase font-normal px-5 py-2.5 rounded-full transition-all duration-200 hover:opacity-70 focus-visible:outline-2 ${
-                scrolled ? 'border-white text-white' : 'text-black'
+                scrolled ? "border-white text-white" : "text-black"
               }`}
               aria-label="About"
             >
               About
             </TransitionLink>
           )}
-          {pathname === '/about' && (
+          {pathname === "/about-us" && (
             <TransitionLink
               to="/contact"
               className={`flex items-center gap-2 text-[12px] tracking-widest uppercase font-normal px-5 py-2.5 rounded-full transition-all duration-200 hover:opacity-70 focus-visible:outline-2 ${
-                scrolled ? 'border-white text-white' : 'text-black'
+                scrolled ? "border-white text-white" : "text-black"
               }`}
               aria-label="Contact us"
             >

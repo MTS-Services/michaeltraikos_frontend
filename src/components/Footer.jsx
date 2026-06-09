@@ -1,6 +1,6 @@
 import TransitionLink from "./TransitionLink";
 import logoImg from "@/assets/logo_dark_1.png";
-import { lenisRef } from './PageWipeOverlay';
+import { lenisRef } from "./PageWipeOverlay";
 
 // Instagram icon
 function IconInstagram() {
@@ -51,9 +51,9 @@ const QUICK_LINKS = [
   { label: "Home", to: "/" },
   { label: "Refinancing", to: "/refinancing" },
   { label: "Calculators", to: "/calculators" },
-  { label: "About Us", to: "/about" },
+  { label: "About Us", to: "/about-us" },
   { label: "Contact", to: "/contact" },
-  { label: "FAQ", to: "/faq" },
+  { label: "FAQ", to: "/faqs" },
 ];
 
 export default function Footer() {
