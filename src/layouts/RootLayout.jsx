@@ -23,7 +23,7 @@ export default function RootLayout() {
       window.matchMedia("(max-width: 650px)").matches,
   );
   const isHome = pathname === "/";
-  const isAbout = pathname === "/about";
+  const isAbout = pathname === "/about-us";
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 650px)");

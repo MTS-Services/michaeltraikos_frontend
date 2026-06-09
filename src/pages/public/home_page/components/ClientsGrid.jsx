@@ -11,12 +11,12 @@ import foxImg from "@/assets/grid_image/construction.png";
 
 // Route map: card id → path
 const CARD_ROUTES = {
-  0: '/first-home',
-  1: '/next-home',
-  2: '/investment',
-  3: '/construction',
-  4: '/smsf',
-  5: '/refinancing',
+  0: "/first-home-buyer-loan",
+  1: "/next-home-buyer-loans",
+  2: "/investment",
+  3: "/construction-renovation-loans",
+  4: "/smsf",
+  5: "/refinancing",
 };
 
 const CLIENTS = [
@@ -88,7 +88,15 @@ const CLIENTS = [
   },
 ];
 
-function ClientCard({ client, index, onEnter, onLeave, isActive, onToggle, onTouchPreview }) {
+function ClientCard({
+  client,
+  index,
+  onEnter,
+  onLeave,
+  isActive,
+  onToggle,
+  onTouchPreview,
+}) {
   const textRef = useRef(null);
   const imgRef = useRef(null);
   const loopRef = useRef(null);
@@ -249,7 +257,11 @@ export default function ClientsGrid() {
   const touchPreviewTimeoutRef = useRef(null);
 
   const isTouchPreviewViewport = useCallback(
-    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 1023px) and (hover: none) and (pointer: coarse)').matches,
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia(
+        "(max-width: 1023px) and (hover: none) and (pointer: coarse)",
+      ).matches,
     [],
   );
 
@@ -329,7 +341,9 @@ export default function ClientsGrid() {
 
       if (!element) return;
 
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
       const rect = element.getBoundingClientRect();
       const topInset = 96;
       const bottomInset = 32;
@@ -338,13 +352,15 @@ export default function ClientsGrid() {
 
       if (!isAboveViewport && !isBelowViewport) return;
 
-      const nextScrollY = window.scrollY + (isAboveViewport
-        ? rect.top - topInset
-        : rect.bottom - window.innerHeight + bottomInset);
+      const nextScrollY =
+        window.scrollY +
+        (isAboveViewport
+          ? rect.top - topInset
+          : rect.bottom - window.innerHeight + bottomInset);
 
       window.scrollTo({
         top: Math.max(0, nextScrollY),
-        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        behavior: prefersReducedMotion ? "auto" : "smooth",
       });
     },
     [clearTouchPreview, handleEnter, isTouchPreviewViewport],
@@ -364,13 +380,13 @@ export default function ClientsGrid() {
       if (CARD_ROUTES[id]) {
         const to = CARD_ROUTES[id];
 
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           if (lenisRef.current) {
             lenisRef.current.scrollTo(0, { immediate: true });
           } else {
-            document.documentElement.style.scrollBehavior = 'auto';
+            document.documentElement.style.scrollBehavior = "auto";
             window.scrollTo(0, 0);
-            document.documentElement.style.scrollBehavior = '';
+            document.documentElement.style.scrollBehavior = "";
           }
           resetCardSelection();
           navigate(to);
@@ -382,9 +398,9 @@ export default function ClientsGrid() {
           if (lenisRef.current) {
             lenisRef.current.scrollTo(0, { immediate: true });
           } else {
-            document.documentElement.style.scrollBehavior = 'auto';
+            document.documentElement.style.scrollBehavior = "auto";
             window.scrollTo(0, 0);
-            document.documentElement.style.scrollBehavior = '';
+            document.documentElement.style.scrollBehavior = "";
           }
           resetCardSelection();
           navigate(to);
@@ -394,41 +410,42 @@ export default function ClientsGrid() {
         const vw = window.innerWidth;
         const scrollY = window.scrollY;
         const DURATION = 1.5;
-        const EASE = 'power2.inOut';
+        const EASE = "power2.inOut";
 
         // Clone the current page as a "snapshot" so the old view stays visible
         const snapshot = page.cloneNode(true);
         Object.assign(snapshot.style, {
-          position: 'fixed',
-          top: '0',
-          left: '0',
+          position: "fixed",
+          top: "0",
+          left: "0",
           width: `${vw}px`,
-          height: '100vh',
-          overflow: 'hidden',
-          zIndex: '9998',
-          pointerEvents: 'none',
-          margin: '0',
-          padding: '0',
+          height: "100vh",
+          overflow: "hidden",
+          zIndex: "9998",
+          pointerEvents: "none",
+          margin: "0",
+          padding: "0",
         });
         // Offset so the currently-visible part of the page shows in snapshot
-        snapshot.children[0] && (snapshot.children[0].style.marginTop = `-${scrollY}px`);
+        snapshot.children[0] &&
+          (snapshot.children[0].style.marginTop = `-${scrollY}px`);
 
         // Dark dimmer on top of the snapshot
-        const dimmer = document.createElement('div');
+        const dimmer = document.createElement("div");
         Object.assign(dimmer.style, {
-          position: 'absolute',
-          inset: '0',
-          background: '#000',
-          opacity: '0',
-          zIndex: '1',
-          pointerEvents: 'none',
+          position: "absolute",
+          inset: "0",
+          background: "#000",
+          opacity: "0",
+          zIndex: "1",
+          pointerEvents: "none",
         });
         snapshot.appendChild(dimmer);
         document.body.appendChild(snapshot);
 
-        document.documentElement.style.overflowX = 'hidden';
-        document.body.style.overflowX = 'hidden';
-        document.documentElement.style.scrollBehavior = 'auto';
+        document.documentElement.style.overflowX = "hidden";
+        document.body.style.overflowX = "hidden";
+        document.documentElement.style.scrollBehavior = "auto";
 
         // Push the real page wrapper off-screen to the right
         gsap.set(page, { x: vw });
@@ -454,7 +471,7 @@ export default function ClientsGrid() {
           opacity: 1,
           duration: DURATION * 0.8,
           delay: DURATION * 0.2,
-          ease: 'power1.in',
+          ease: "power1.in",
         });
 
         gsap.to(page, {
@@ -462,10 +479,10 @@ export default function ClientsGrid() {
           duration: DURATION,
           ease: EASE,
           onComplete: () => {
-            gsap.set(page, { clearProps: 'transform' });
-            document.documentElement.style.overflowX = '';
-            document.body.style.overflowX = '';
-            document.documentElement.style.scrollBehavior = '';
+            gsap.set(page, { clearProps: "transform" });
+            document.documentElement.style.overflowX = "";
+            document.body.style.overflowX = "";
+            document.documentElement.style.scrollBehavior = "";
             lenisRef.current?.resize();
           },
         });

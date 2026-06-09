@@ -41,7 +41,7 @@ export default function About() {
       <SEO
         title="About | Michael Traikos"
         description="Learn about Michael Traikos — competition and creativity runs hard in his veins."
-        canonical="https://example.com/about"
+        canonical="https://example.com/about-us"
       />
 
       {/* ── Fixed portrait image (full-width on mobile, right half on desktop) ── */}
