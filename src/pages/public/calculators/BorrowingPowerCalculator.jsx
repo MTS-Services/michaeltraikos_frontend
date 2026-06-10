@@ -36,18 +36,31 @@ function annualise(val, freq) {
 }
 
 /**
- * HEM (Household Expenditure Measure) benchmark — simplified.
- * Monthly living expenses estimate based on number of dependents.
+ * HEM (Household Expenditure Measure) benchmark — 2024-25 estimates.
+ * Monthly living expenses based on number of dependants and household type.
+ * Each additional dependant adds roughly $700–$1,200/month, matching
+ * how Australian lenders apply HEM in serviceability assessments.
  */
-const HEM_MONTHLY = [
-  1470, // 0 dependents
-  1870, // 1
-  2170, // 2
-  2470, // 3
-  2720, // 4
-  2970, // 5
-  3170, // 6
-  3370, // 7
+const HEM_MONTHLY_SINGLE = [
+  2000, // 0 dependants
+  2700, // 1
+  3300, // 2
+  3900, // 3
+  4500, // 4
+  5100, // 5
+  5700, // 6
+  6300, // 7
+];
+
+const HEM_MONTHLY_COUPLE = [
+  4800, // 0 dependants
+  5700, // 1
+  6200, // 2
+  6800, // 3
+  7500, // 4
+  7900, // 5
+  8300, // 6
+  8900, // 7
 ];
 
 /**
@@ -148,9 +161,10 @@ export default function BorrowingPowerCalculator() {
 
   // Annual expenses
   const declaredMonthlyExpenses = annualise(expenses, expensesFreq) / 12;
-  const baseHem = HEM_MONTHLY[Math.min(dependents, 7)] || 1400;
-  // Adjusted HEM to match Finspo's internal baseline ($1408.17 for 0 dependents)
-  const hemMonthlyExpenses = baseHem - 61.83 + (applicants === 2 ? 1401.17 : 0);
+  const hemMonthlyExpenses =
+    applicants === 2
+      ? HEM_MONTHLY_COUPLE[Math.min(dependents, 7)]
+      : HEM_MONTHLY_SINGLE[Math.min(dependents, 7)];
   const assessedMonthlyExpenses = useHEM
     ? hemMonthlyExpenses
     : Math.max(declaredMonthlyExpenses, hemMonthlyExpenses);
@@ -185,11 +199,11 @@ export default function BorrowingPowerCalculator() {
   const serviceabilityMaximum =
     perDollarMax > 0 ? Math.max(0, monthlySurplus / perDollarMax) : 0;
 
-  // Income-based caps — based on net income after CC & loan servicing
-  // so that any change in credit card limits or loans is reflected in the result.
-  const effectiveAnnualNet = netAnnual - annualCCServicing - annualLoanRepay;
-  const conservativeIncomeCap = effectiveAnnualNet * 5.586;
-  const maximumIncomeCap = effectiveAnnualNet * 7.0175;
+  // Income-based caps — gross income multiples used as an upper sanity check.
+  // Serviceability (which fully accounts for HEM + dependants) is the primary
+  // driver; these caps only bite for unusually high income-to-expense ratios.
+  const conservativeIncomeCap = totalGrossAnnual * 5.5;
+  const maximumIncomeCap = totalGrossAnnual * 7.0;
 
   const conservativeMax = Math.min(
     serviceabilityConservative,
@@ -596,9 +610,8 @@ export default function BorrowingPowerCalculator() {
           </div>
           {useHEM && (
             <div className="text-xs text-neutral-400 mt-1.5 ml-8">
-              Using estimated expenses of{" "}
-              {fmt(HEM_MONTHLY[Math.min(dependents, 7)])}/month based on{" "}
-              {dependents} dependent{dependents !== 1 ? "s" : ""}
+              Using estimated expenses of {fmt(hemMonthlyExpenses)}/month based
+              on {dependents} dependent{dependents !== 1 ? "s" : ""}
             </div>
           )}
           {!useHEM && (
