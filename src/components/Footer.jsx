@@ -186,7 +186,7 @@ export default function Footer() {
               Compliments &amp; Concern
             </TransitionLink>
             <TransitionLink
-              to="/privacy"
+              to="/privacy-policy-2"
               className="hover:text-white transition-colors"
             >
               Privacy Policy

@@ -11,11 +11,11 @@ import foxImg from "@/assets/grid_image/construction.png";
  
 // Route map: card id → path
 const CARD_ROUTES = {
-  0: "/first-home-buyer-loan",
+  0: "/first-home-buyer-loans",
   1: "/next-home-buyer-loans",
-  2: "/investment",
+  2: "/investment-property-loans",
   3: "/construction-renovation-loans",
-  4: "/smsf",
+  4: "/smsf-loans",
   5: "/refinancing",
 };
  
