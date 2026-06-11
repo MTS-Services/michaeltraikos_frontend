@@ -42,25 +42,25 @@ function annualise(val, freq) {
  * how Australian lenders apply HEM in serviceability assessments.
  */
 const HEM_MONTHLY_SINGLE = [
-  2000, // 0 dependants
-  2700, // 1
-  3300, // 2
-  3900, // 3
-  4500, // 4
-  5100, // 5
-  5700, // 6
-  6300, // 7
+  1880, // 0 dependants
+  2345, // 1
+  2820, // 2
+  3300, // 3
+  3770, // 4
+  4243.1, // 5
+  4717.5, // 6
+  5190.5, // 7
 ];
 
 const HEM_MONTHLY_COUPLE = [
-  4800, // 0 dependants
-  5700, // 1
-  6200, // 2
-  6800, // 3
-  7500, // 4
-  7900, // 5
-  8300, // 6
-  8900, // 7
+  4235, // 0 dependants
+  4640, // 1
+  4960, // 2
+  5318, // 3
+  5677, // 4
+  6040, // 5
+  6395, // 6
+  6752, // 7
 ];
 
 /**
