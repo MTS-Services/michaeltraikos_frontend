@@ -13,9 +13,10 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Traikos Finance | Mortgage Broker"
-        description="Making cents of real estate and sense of your finance."
-        canonical="https://example.com/"
+        title="Finance Broker Melbourne | Lending Solution |Traikos Finance"
+        description="Finance Broker Melbourne providing tailored lending solutions, expert finance advice, competitive rates, and support for your property goals."
+        keywords="Mortgage Broker Melbourne"
+        canonical="https://traikosfinance.com/"
       />
 
       <main id="main-content" tabIndex={-1} className="flex-1">

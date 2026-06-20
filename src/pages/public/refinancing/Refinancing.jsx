@@ -18,9 +18,10 @@ export default function Refinancing() {
   return (
     <>
       <SEO
-        title="Refinancing Home Loans & Mortgages | Traikos Finance"
-        description="Secure a better rate and reduce your repayments by refinancing your home loan with Traikos Finance. Personalised support from start to finish."
-        canonical="https://example.com/refinancing"
+        title="Home Loan Refinancing Melbourne | Traikos Finance"
+        description="Home Loan Refinancing Melbourne to reduce repayments, access equity, compare lenders, and secure a more competitive loan."
+        keywords="Home Loan Refinancing Melbourne"
+        canonical="https://traikosfinance.com/refinancing"
       />
 
       <main id="main-content" tabIndex={-1} className="text-black flex-1">

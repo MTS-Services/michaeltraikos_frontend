@@ -74,9 +74,10 @@ export default function Calculators() {
   return (
     <>
       <SEO
-        title={tab.seoTitle}
-        description={tab.seoDesc}
-        canonical={`https://traikosfinance.com/calculators`}
+        title="Home Loan Calculators Australia | Traikos Finance"
+        description="Home Loan Calculators Australia to estimate repayments, borrowing power, refinancing savings, and property finance costs."
+        keywords="Home Loan Calculators Australia"
+        canonical="https://traikosfinance.com/calculators"
       />
 
       <main

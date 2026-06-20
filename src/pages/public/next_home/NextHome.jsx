@@ -18,9 +18,10 @@ export default function NextHome() {
   return (
     <>
       <SEO
-        title="Next Home Buyer Loans | Traikos Finance"
-        description="Moving to your next home? Traikos Finance helps you secure a better loan for your next purchase with personalised advice and competitive rates."
-        canonical="https://example.com/next-home-buyer-loans"
+        title="Next Home Buyer Loans Melbourne | Traikos Finance"
+        description="Next Home Buyer Loans Melbourne tailored to your move. Access equity, explore loan options, and buy your next home with confidence."
+        keywords="Next Home Buyer Loans Melbourne"
+        canonical="https://traikosfinance.com/next-home-buyer-loans"
       />
 
       <main id="main-content" tabIndex={-1} className="text-black flex-1">

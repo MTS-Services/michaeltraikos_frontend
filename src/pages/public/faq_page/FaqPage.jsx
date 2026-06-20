@@ -577,9 +577,10 @@ export default function FaqPage() {
   return (
     <>
       <SEO
-        title="Frequently Asked Questions - Traikos Finance"
-        description="Get answers to common questions about home loans, refinancing, investment properties, and more. Expert mortgage broker advice from Traikos Finance."
-        keywords="mortgage FAQ, home loan questions, refinancing questions, investment property loans, offset accounts, pre-approval"
+        title="Mortgage Broker FAQs Melbourne | Traikos Finance"
+        description="Mortgage Broker FAQs Melbourne covering home loans, refinancing, investment loans, SMSF lending, and finance solutions."
+        keywords="Mortgage Broker FAQs Melbourne"
+        canonical="https://traikosfinance.com/faqs"
       />
 
       <section className="bg-white pt-8! pb-16!">

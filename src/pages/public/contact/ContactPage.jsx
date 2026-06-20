@@ -183,9 +183,10 @@ export default function ContactPage() {
   return (
     <>
       <SEO
-        title="Contact | Traikos Finance"
-        description="Get in touch with Traikos Finance. Call, email, or send us a message and we'll get back to you."
-        canonical="https://example.com/contact"
+        title="Contact Mortgage Broker Melbourne | Traikos Finance"
+        description="Mortgage Broker Melbourne offering tailored lending solutions. Contact Traikos Finance today for expert home loan advice."
+        keywords="Mortgage Broker Melbourne"
+        canonical="https://traikosfinance.com/contact"
       />
 
       {/* ── Hero ───────────────────────────────────────────────────────── */}

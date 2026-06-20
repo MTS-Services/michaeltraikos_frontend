@@ -18,9 +18,10 @@ export default function FirstHome() {
   return (
     <>
       <SEO
-        title="First Home Buyer Loans | Traikos Finance"
-        description="First home buyer loan support with clear guidance, practical options, and end-to-end help from Traikos Finance."
-        canonical="https://example.com/first-home-buyer-loan"
+        title="First Home Buyer Loans Melbourne | Traikos Finance"
+        description="First Home Buyer Loans Melbourne tailored to your needs. Get expert guidance, lender options, pre-approval support, and finance solutions."
+        keywords="First Home Buyer Loans Melbourne"
+        canonical="https://traikosfinance.com/first-home-buyer-loans"
       />
 
       <main id="main-content" tabIndex={-1} className="text-black flex-1">

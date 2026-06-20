@@ -18,9 +18,10 @@ export default function Smsf() {
   return (
     <>
       <SEO
-        title="SMSF Loans | Traikos Finance"
-        description="Invest in property through your self-managed super fund with expert SMSF loan guidance from Traikos Finance."
-        canonical="https://example.com/smsf"
+        title="SMSF Property Loans Melbourne | Traikos Finance"
+        description="SMSF Property Loans Melbourne tailored to your fund. Explore lending options, build wealth, and grow your retirement portfolio."
+        keywords="SMSF Property Loans Melbourne"
+        canonical="https://traikosfinance.com/smsf-loans"
       />
 
       <main id="main-content" tabIndex={-1} className="text-black flex-1">

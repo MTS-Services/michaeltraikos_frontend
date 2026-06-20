@@ -13,6 +13,7 @@ export default function SEO({
   description = 'A fast, accessible and SEO-friendly React application.',
   canonical = 'https://example.com/',
   ogImage = 'https://example.com/og-image.jpg',
+  keywords = '',
 }) {
   const siteName = 'Traikos Finance';
   const titleHasSiteName = title.toLowerCase().includes(siteName.toLowerCase());
@@ -45,6 +46,9 @@ export default function SEO({
 
   setMeta('meta[name="description"]', 'name', 'description', description);
   setLink('canonical', canonical);
+  if (keywords) {
+    setMeta('meta[name="keywords"]', 'name', 'keywords', keywords);
+  }
 
   // Open Graph
   setMeta('meta[property="og:title"]', 'property', 'og:title', fullTitle);

@@ -39,9 +39,10 @@ export default function About() {
   return (
     <>
       <SEO
-        title="About | Michael Traikos"
-        description="Learn about Michael Traikos — competition and creativity runs hard in his veins."
-        canonical="https://example.com/about-us"
+        title="About Michael Traikos | Mortgage Broker Melbourne | Traikos"
+        description="Mortgage Broker Melbourne with nearly 20 years of real estate experience. Meet Michael Traikos and discover tailored finance solutions."
+        keywords="Finance Broker Melbourne"
+        canonical="https://traikosfinance.com/about-us"
       />
 
       {/* ── Fixed portrait image (full-width on mobile, right half on desktop) ── */}

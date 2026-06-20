@@ -18,9 +18,10 @@ export default function Investment() {
   return (
     <>
       <SEO
-        title="Investment Property Loans | Traikos Finance"
-        description="Grow your property portfolio with tailored investment loan solutions from Traikos Finance. Expert guidance on structuring your investment loans."
-        canonical="https://example.com/investment"
+        title="Investment Property Loans Melbourne | Traikos Finance"
+        description="Investment Property Loans Melbourne tailored to your goals. Secure the right loan structure, access equity, and grow your portfolio."
+        keywords="Investment Property Loans Melbourne"
+        canonical="https://traikosfinance.com/investment-property-loans"
       />
 
       <main id="main-content" tabIndex={-1} className="text-black flex-1">
