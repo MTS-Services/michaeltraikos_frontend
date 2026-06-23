@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://traikosfinance.com/sitemap.xml
+LLMS: https://traikosfinance.com/llms.txt
