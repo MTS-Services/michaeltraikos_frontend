@@ -3,10 +3,11 @@
  * Works with Vite + React (no SSR). For SSR use react-helmet-async.
  *
  * Props:
- *   title       — page title (appended with site name)
- *   description — meta description
- *   canonical   — canonical URL for this page
- *   ogImage     — Open Graph image URL
+ *   title           — page title (appended with site name by default)
+ *   description     — meta description
+ *   canonical       — canonical URL for this page
+ *   ogImage         — Open Graph image URL
+ *   appendSiteName  — when false, use title as-is without "| Traikos Finance"
  */
 export default function SEO({
   title = 'Traikos Finance',
@@ -14,10 +15,12 @@ export default function SEO({
   canonical = 'https://example.com/',
   ogImage = 'https://example.com/og-image.jpg',
   keywords = '',
+  appendSiteName = true,
 }) {
   const siteName = 'Traikos Finance';
   const titleHasSiteName = title.toLowerCase().includes(siteName.toLowerCase());
-  const fullTitle = titleHasSiteName ? title : `${title} | ${siteName}`;
+  const fullTitle =
+    !appendSiteName || titleHasSiteName ? title : `${title} | ${siteName}`;
 
   // Update <title>
   document.title = fullTitle;

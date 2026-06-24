@@ -39,7 +39,7 @@ export default function About() {
   return (
     <>
       <SEO
-        title="About Michael Traikos | Mortgage Broker Melbourne | Traikos"
+        title="About Michael Traikos | Mortgage Broker Melbourne"
         description="Mortgage Broker Melbourne with nearly 20 years of real estate experience. Meet Michael Traikos and discover tailored finance solutions."
         keywords="Finance Broker Melbourne"
         canonical="https://traikosfinance.com/about-us"

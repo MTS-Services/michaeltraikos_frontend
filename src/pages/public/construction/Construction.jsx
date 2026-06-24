@@ -22,6 +22,7 @@ export default function Construction() {
         description="Construction Loans Melbourne tailored to your build. Secure land, construction, and renovation finance with expert guidance."
         keywords="Construction Loans Melbourne"
         canonical="https://traikosfinance.com/construction-renovation-loans"
+        appendSiteName={false}
       />
 
       <main id="main-content" tabIndex={-1} className="text-black flex-1">
