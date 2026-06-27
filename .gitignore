@@ -10,10 +10,8 @@ lerna-debug.log*
 node_modules
 *.local
 
-.env
 
 # Editor directories and files
-.vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
@@ -27,3 +25,4 @@ branch_structure.json
 temp_auto_push.bat
 temp_interactive_push.bat
 .getaibd/
+config.bat
